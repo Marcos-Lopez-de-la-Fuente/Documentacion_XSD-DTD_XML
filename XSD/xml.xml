@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<!-- Enlazamos el XML con el XSD -->
+<raiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="./XSD.xsd">
+
+    <hijos1>
+        <nietos1>ValorFijo</nietos1>
+        <nietos2></nietos2>
+    </hijos1>
+
+</raiz>

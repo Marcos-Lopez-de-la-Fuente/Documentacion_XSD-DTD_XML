@@ -1,0 +1,110 @@
+
+<!-- Elemento raiz con sus hijos -->
+<!ELEMENT raiz (hijos1,hijos2,hijos3*, hijos4)>
+
+
+
+<!-- ============================================================ -->
+<!-- EL CONTINGUT PODRÁ SER: -->
+
+<!-- EMPTY: Significa que l'element és buit, és a dir, que no pot tenir contingut
+    L'element pot tenir atributs. -->
+<!ELEMENT hijos1 EMPTY>
+
+
+<!-- (#PCDATA): Significa que l'element pot contenir text.
+    · S'ha d'escriure entre parèntesi.
+    · No contenen etiquetes ni altres elements.
+    · Carácteres no permitidos: "<", "&", "]]>" -->
+<!ELEMENT hijos2 (#PCDATA)>
+
+
+<!-- ANY: Significa que l'element pot contenir qualsevol cosa (text i altres elements), és a dir, amb contingut mixt -->
+<!ELEMENT hijos3 ANY>
+
+
+<!-- |: Significa que l'element conté només un dels dos fills indicats. -->
+<!-- (): Permet agrupar expressions. -->
+<!-- ?: Significa que l'element pot aparèixer o no, però només una vegada. -->
+<!-- *: Significa que l'element pot no aparèixer o aparèixer una o més vegades. -->
+<!-- +: Significa que l'element ha d'aparèixer una o més vegades (no pot no aparèixer). -->
+<!ELEMENT hijos4 ((nietos1 | nietos2), nietos3?, nietos4*, nietos5+)>
+
+<!ELEMENT nietos1 (#PCDATA)>
+<!ELEMENT nietos3 (#PCDATA)>
+<!ELEMENT nietos4 (#PCDATA)>
+<!ELEMENT nietos5 (#PCDATA)>
+
+
+
+<!-- ============================================================ -->
+<!-- DECLARACIÓN DE ATRIBUTOS -->
+
+
+<!-- ID: El valor de l'atribut (no el nom) ha de ser únic i no es pot repetir a altres elements o atributs. No pot contenir espais en blanc. -->
+<!-- #REQUIRED: L'atribut és obligatori, encara que no s'especifica cap valor predeterminat. -->
+<!ATTLIST raiz atributo1 ID #REQUIRED>
+<!ATTLIST hijos1 atributo1 ID #REQUIRED>
+
+
+<!-- CDATA: L'atribut conté caràcters. No pot contenir etiquetes. -->
+<!-- #IMPLIED: L'atribut no és obligatori i no s'especifica cap valor predeterminat. -->
+<!ATTLIST raiz atributo2 CDATA #IMPLIED>
+
+
+
+<!-- NMTOKEN: L'atribut només conté pot contenir lletres, dígits i els caràcters punt, guió, subratllat i el dos punts. -->
+<!ATTLIST raiz atributo3 NMTOKEN #IMPLIED>
+
+
+<!-- NMTOKENS: L'atribut és com NMTOKEN acceptant també espais en blanc. -->
+<!ATTLIST raiz atributo4 NMTOKENS #IMPLIED>
+
+
+<!-- Valors: L'atribut només pot contenir uns dels elements d'una llista. La llista ha d'anar entre parèntesi, separats els elements per una barra vertical "|". -->
+<!ATTLIST raiz atributo5 (valor1|valor2|valor3) #IMPLIED>
+
+
+<!-- Puedes "fixear" el atributo de un elemento con una de las dos siguientes opciones: -->
+<!-- #FIXED valor: L'atribut té un valor fix. -->
+<!ATTLIST raiz atributo6 (ValorFijo) #IMPLIED>
+<!ATTLIST raiz atributo7 CDATA #FIXED "ValorFijo">
+
+<!-- Valor por default -->
+<!ATTLIST hijos1 atributo10 CDATA "AAA">
+
+
+<!-- IDREF: El valor de l'atribut ha de coincidir amb el valor de l'atribut ID del mateix element o d'un altre element. -->
+<!ATTLIST raiz atributo8 IDREF #IMPLIED>
+<!ATTLIST hijos1 atributo8 IDREF #IMPLIED>
+
+
+<!-- IDREFS: El valor de l'atribut és una sèrie de valors separats per espais que coincideixen amb els valors dels l'atributs ID d'altres elements o el suyo mismo -->
+<!ATTLIST raiz atributo9 IDREFS #IMPLIED>
+<!ATTLIST hijos1 atributo9 IDREFS #IMPLIED>
+
+
+
+
+<!-- ============================================================ -->
+<!-- DECLARACIÓ D'ENTITAS -->
+
+
+<!-- Declaracions d'entitats internes: Si una entitat es declara en una DTD s'anomenarà entitat interna. -->
+<!ENTITY entidad1 "aaa">
+
+
+<!-- Declaracions d'entitats externes: -->
+<!ENTITY entidad2 SYSTEM "archivoDeTexto.txt">
+<!ENTITY entidad3 SYSTEM "imagen.png">
+
+
+<!-- Declaracions d'entitats de caràcter: Les entitats de caràcter s'utilitzen per nombrar qualquna de les entitats que són representacions simbòliques de información, és a dir, caràcters que són difícils o impossibles d'escriure. -->
+<!ENTITY entidad4 "&#169;"> <!-- Aquest valor representa ©. -->
+
+<!-- Entitats ja existents: A XML ja estan definides les següents entitats:
+    · {&} Ampersand (seria l'And o i): &amp;
+    · {''} Single quote (cometes simples): &apos;
+    · {>} Major que: &gt;
+    · {<} Menor que: &lt;
+    · {""} Double quote (cometes dobles) : &quot; -->

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE raiz SYSTEM "./DTD.dtd"> <!-- Documento externo -->
+
+<!-- DTD en el mismo documento
+<!DOCTYPE raiz [
+    <!ELEMENT raiz (hijos*)>
+]>
+-->
+
+
+
+
+<raiz atributo1="ID1" atributo2="CDATA €#~" atributo3="NMTOKEN.-_:"
+atributo4="NMTOKENS  .-_:" atributo5="valor1" atributo6="ValorFijo"
+atributo7="ValorFijo" atributo8="ID1" atributo9="ID1 ID2 ID3">
+
+
+    <hijos1 atributo1="ID2" atributo8="ID1" atributo9="ID1"
+    atributo10="AAA"/>
+
+    <hijos2>Puedo escribir gracias a #PCDATA</hijos2>
+
+
+    <hijos3/> <!-- Un elemento ANY puede estar vacio -->
+    <hijos3>Això és un exemple</hijos3> <!-- Puede tener texto -->
+
+    <hijos3> <!-- Puede tener otros elementos aunque no indique que son hijos suyo -->
+        <hijos1 atributo1="ID3"/>
+
+        <hijos2>aaaaaa</hijos2>
+    </hijos3>
+
+    <hijos3> <!-- Puede tener texto y elementos a la vez-->
+        Això és
+        <hijos2>
+            un exemple
+        </hijos2>
+    </hijos3>
+
+
+    <hijos4>
+        <nietos1>
+            &entidad1;
+        </nietos1>
+
+        <nietos3></nietos3>
+        <nietos4></nietos4>
+        <nietos4></nietos4>
+        <nietos5></nietos5>
+        <nietos5></nietos5>
+    </hijos4>
+</raiz>

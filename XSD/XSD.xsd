@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Con el schema definimos de donde vamos a sacar el "formato" -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Indicamos el elemento raiz -->
+    <xs:element name="raiz">
+
+        <!-- ELEMENTOS COMPLEJOS -->
+
+        <!-- Un element complex és el que pot contenir altres elements i/o atributs. Per declarar elements complexos utilitzam "complexType".  -->
+
+        <!-- Un element complex pot estar buit, és a dir, no contenir ni elements ni text, però si algun atribut. Si no contenen atributs, es poden declarar com a elements simples. -->
+        <!--
+        <xs:complexType>
+            <xs:attribute name="atributoEnComplexTypeVacio" type="xs:positiveInteger"/>
+        </xs:complexType>
+        -->
+
+        <!-- Un element complex pot contenir altres elements, ho indicam amb "mixed". [EL MIXED CREO QUE NO ES NECESARIO] -->
+        <xs:complexType mixed="true">
+
+            <!--"sequence: Serveix per especificar l'ordre en el que obligatòriament han d'aparèixer els elements fill d'un element. -->
+            <xs:sequence>
+
+                <!-- maxOccurs="unbounded": Para indicar que pueden haber infinitos "hijos1" -->
+                <xs:element name="hijos1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <xs:element name="nietos1" type="xs:string" fixed="ValorFijo"/>
+
+                            <!-- choice: Para escojer solo 1 de los 2 -->
+                            <xs:choice>
+                                <xs:element name="nietos2" type="xs:string"      default="ValorDefault"/>
+                                <xs:element name="nietos3" type="xs:string"/>
+                            </xs:choice>
+
+                        </xs:sequence>
+                    </xs:complexType>
+
+                </xs:element>
+                <xs:element name="hijos2" maxOccurs="unbounded">
+                    <xs:complexType>
+
+                        <!-- Se puede utilizar el choice sin el sequence -->
+                        <xs:choice>
+                                <xs:element name="nietos4" type="xs:string"/>
+                                <xs:element name="nietos5" type="xs:string"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="hijos3" maxOccurs="unbounded">
+                    <xs:complexType>
+
+                        <!-- all: Serveix per indicar que els elements fills d'un element poden aparèixer en qualsevol ordre. -->
+                        <xs:all>
+                            <xs:element name="nietos6" type="xs:string"/>
+                            <xs:element name="nietos7" type="xs:string"/>
+                        </xs:all>
+
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
